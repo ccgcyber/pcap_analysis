@@ -1,128 +1,128 @@
 -----------------------------------------------
-time:  2013/4/23
-problem:
-    a_dict = {}
-    a_list = []
-    for ....
-        修改a_dict内容
-        a_list.append(a_dict)
+Time: 2013/4/23
+Problem:
+    A_dict = {}
+    A_list = []
+    For ...
+        Modify a_dict content
+        A_list.append (a_dict)
 
-    最后发现，a_list里面放的都是同一个dict！！！
-solution:
-    解决方法很简单，改成如下就行：
-    a_list = []
-    for ....
-        a_dict = {}
-        修改a_dict内容
-        a_list.append(a_dict)
+    Finally found that a_list inside the same is a dict! The The
+Solution:
+    The solution is very simple, change the following line:
+    A_list = []
+    For ...
+        A_dict = {}
+        Modify a_dict content
+        A_list.append (a_dict)
 
-    浅层的原因：因为append的时候，不会新建一个新的对象插进list，这就导致每次插的都是同一个对象，最后list里面装的全是同一个dict，所以内容就完全一样了（都是最后修改得到的内容）
-    深层的原因：一定要深刻认识这个问题，这是跟c很不一样的一个机制
-              1：在python内，万物皆对象，连右值都是一个对象（而不是一个简单的常量字符串）
-              2：参数传递、赋值过程肯定是用“传对象引用”
-              3：当对象引用次数为0的时候，这个对象就会被自动销毁（每被引用一次，引用计数+1；每被del或者变量引用另外一个对象一次，引用计数-1）
-              请深刻理解以下这个例子：
-              a = 'abcd'
-              b = a
-              a = 'efg'
-              print a
-              print b
-              输出结果为：efg        abcd
-              这是因为1：a引用了‘abcd’这个对象
-                     2：b = a，所以b也是引用了‘abcd’这个对象
-                     3：a = ‘efg’，导致a作为‘efg’的引用了，而b还是‘abcd’的引用
-
------------------------------------------------
-time:  2013/4/23
-problem:
-    文件中的内容是有固定格式的，如将c中的一个struct写入到一个文件中（如顺序为2字节，2字节，4字节），怎么将这个内容读出到python中的变量去
-solution：
-    烦点的做法：把文件读入到一个string，然后a = string[0:2]，b = string[2:4]这样
-    简洁的做法：利用struct的unpack函数
+    Shallow reason: because append time, not a new object into a new insert, which led to each insert are the same object, the last list of all loaded with the same dict, so the content is exactly the same (All the last modified content)
+    Deep reason: must be a profound understanding of this problem, which is very different with a mechanism of c
+              1: In python, everything is the object, even the right value is an object (rather than a simple constant string)
+              2: parameter transfer, the assignment process is certainly used to "pass the object reference"
+              3: When the object reference number is 0, the object will be automatically destroyed (each reference once, reference count +1; each del or variable reference to another object once, reference count -1)
+              Please understand the following example:
+              A = 'abcd'
+              B = a
+              A = 'efg'
+              Print a
+              Print b
+              The output is: efg abcd
+              This is because 1: a references the 'abcd' object
+                     2: b = a, so b also refers to the 'abcd' object
+                     3: a = 'efg', resulting in a as a reference to 'efg', and b is a 'abcd' reference
 
 -----------------------------------------------
-time:  2013/4/23
-tips:
-    python中如果要返回多个值，用tuple会很简洁方便～
+Time: 2013/4/23
+Problem:
+    The contents of the document is a fixed format, such as the c in a struct written to a document (such as the order of 2 bytes, 2 bytes, 4 bytes), how to read the contents of the contents of the python Variable to go
+Solution:
+    Practice: read the file into a string, then a = string [0: 2], b = string [2: 4] so
+    Simple approach: the use of struct unpack function
 
 -----------------------------------------------
-time:  2013/4/23
-problem:
-    解析出来的tcp包头，打印出来的seq_num和ack_num与wireshark的不一致
-solution：
-    这是因为wireshark在这两个数值上面用的是relative value，而不是absolute value
-    relative value的意思是：all SEQ and ACK numbers always start at 0 for the first packet seen in each conversation。
+Time: 2013/4/23
+Tips:
+    If you want to return multiple values ​​in python, use tuple will be very simple and convenient
 
 -----------------------------------------------
-time:  2013/4/23
-tips:
-    python中如果打印一个对象中的内容，直接print my_obj.__dict__就行了，很简洁，不用自己写什么print_info函数。。。。
+Time: 2013/4/23
+Problem:
+    Parsed out of the tcp header, printed out of seq_num and ack_num with wireshark inconsistent
+Solution:
+    This is because the two wires are used in these two values ​​are relative value, rather than absolute value
+    The relative value means: all SEQ and ACK numbers always start at 0 for the first packet seen in each conversation.
 
 -----------------------------------------------
-time:  2013/4/26
-problem:
-    if (a < b || b < c):
-    有语法错误。。。
-solution：
-    python里面不让这样的，要用“or”还有“and”。。。。
+Time: 2013/4/23
+Tips:
+    Python if you print the contents of an object, directly print my_obj .__ dict__ on the line, very simple, do not write what print_info function. The The The
 
 -----------------------------------------------
-time:  2013/5/2
-problem:
-    很多浏览器对页面都会有缓存，若在请求中加入“If Modified Since”，这样，服务器返回一个http 304（服务器就不用返回这个页面内容了）
-    浏览器就能用cache的内容了，这对这个项目是一个很大的问题（因为我是依据第一个请求作为分隔session的依据的）
-solution：
-    这个不是solution！浏览器ctr+f5可以不用cache
-    这个只是能用于我测试这个工程能不能正常用于没cache的状况，有cache真的是无能为力
+Time: 2013/4/26
+Problem:
+    If (a <b || b <c):
+    There is a grammatical error. The The
+Solution:
+    Python inside not to this, use "or" and "and". The The The
 
 -----------------------------------------------
-time:  2013/5/2
-tips:
-    对网页进行抓包的时候，如果服务器返回的结果是gzip-encode那么content里面的是通过压缩的内容，而wireshark会自动对其解压缩，
-    得出解压缩后的内容（需要验证一下这个内容在不在pcap文件内，还是说这个功能是wireshark客户端读pcap文件后做的一个处理）
-    另外wireshark还提供一个reassemble segment的功能，需要验证一下这个重组后的内容是否存在pcap文件中，如果不在，需要自己做很麻烦
-    上述这些功能都是wireshark对pcap包解析后显示的额外信息，pcap文件里面是没有这些东西的（本来pcap文件就是抓取到的很底层的数据
-    怎么可能会出现这种很上层功能才能实现的内容呢？）
+Time: 2013/5/2
+Problem:
+    Many browsers will cache the page, if the request to join "If Modified Since", so that the server returns a http 304 (the server will not have to return to the page content)
+    The browser will be able to use the contents of the cache, which is a big problem for this project (because I was based on the first request as a basis for the separation of the session)
+Solution:
+    This is not solution! Browser ctr + f5 can not cache
+    This is only used to test this project can not be used for the normal cache, the cache is really powerless
 
 -----------------------------------------------
-time:  2013/5/8
-tips:
-    a[::-1]将a中内容倒序
+Time: 2013/5/2
+Tips:
+    When the page is captured, if the server returns the result is gzip-encode then content inside is compressed by the content, and wireshark will automatically decompress it,
+    Get the contents of the decompression (need to verify that the content is not in the pcap file, or that this function is the wirehark client to read the pcap file to do a deal)
+    In addition Winshark also provides a reassemble segment function, need to verify whether the contents of this reorganization of the pcap file, if not, need to do their own trouble
+    These features are wireshark pcap packet analysis shows the additional information, pcap file which is not these things (the original pcap file is captured to the bottom of the data
+    How could there be such a very top function to achieve the content? )
 
 -----------------------------------------------
-time:  2013/5/10
-tips:
-    在一条tcp连接中，请求和响应总是一一对应出现的，就是说在一条tcp连接内，一个请求后面紧跟的总会是它的响应，而不会是别的响应或者是别的请求
+Time: 2013/5/8
+Tips:
+    A [:: - 1] will reverse the contents of a
 
 -----------------------------------------------
-time:  2013/5/10
-problem:
-    gzip解压http的content解压不了
-solution：
-    在http报文中，报头都是用"\r\n"做换行分割的，最后会多出一个换行，特别注意的是这个换行是属于content的，而不属于的报头的，把这个换行加到content解压就成功了
+Time: 2013/5/10
+Tips:
+    In a tcp connection, the request and the response is always a one-to-one correspondence, that is, in a tcp connection, a request followed by the event will always be its response, but not other responses or other requests
 
 -----------------------------------------------
-time:  2013/5/14
-tips:
-    用python-excel这个第三方模块去读写excel文件，用matplotlib去画图像
+Time: 2013/5/10
+Problem:
+    Gzip extract the contents of http can not extract
+Solution:
+    In the http message, the header is "\ r \ n" do wrap, and finally will be more of a line, with particular attention to the line is the content of the content, but not the header, the line To the contents of the decompression on the success of the
 
 -----------------------------------------------
-time:  2013/5/15
-problem:
-    matplotlib中，要画15条柱子，只有一条有高度，其余都为0，那么只有有高度的这条才显示出来，其他的完全没有，连横坐标都没有
-solution:
-    很tricky的做法，将零的那些项加上一个很小的数（1e-7），这样就可以画出了
+Time: 2013/5/14
+Tips:
+    Use python-excel this third-party module to read and write excel file, with matplotlib to draw the image
 
 -----------------------------------------------
-time:  2013/5/15
-problem:
-    x轴的横坐标重叠（overlap）
-solution:
-    将他们倾斜就行了（rotation）
+Time: 2013/5/15
+Problem:
+    Matplotlib, to draw 15 pillars, only one has a height, the rest are 0, then only a high degree of this show, the other is not, even the abscissa are not
+Solution:
+    Very tricky way to add zero items to a small number (1e-7), so that you can draw
 
 -----------------------------------------------
-time:  2013/5/15
-problem:
-    前后画两张图，后面的那种图有点不对
-solution:
-    每画一张图要重新生成一个figure（plt.figure()），不然有些参数会用到上一张图的，从而导致错误
+Time: 2013/5/15
+Problem:
+    The abscissa of the x-axis is overlapped.
+Solution:
+    Tilt them on the line
+
+-----------------------------------------------
+Time: 2013/5/15
+Problem:
+    Before and after painting two pictures, behind the kind of map a bit wrong
+Solution:
+Each drawing a map to re-generate a figure (plt.figure ()), or some parameters will be used on a map, resulting in errors
